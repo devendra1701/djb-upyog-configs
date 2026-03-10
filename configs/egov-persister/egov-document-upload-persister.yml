@@ -44,7 +44,7 @@ serviceMaps:
       fromTopic: update-du-document
       isTransaction: true
       queryMaps:
-        - query: UPDATE eg_du_document SET tenantid=?, name=?, category=?, documentLink=?, filestoreId=?, fileType=?, fileSize=?, lastmodifiedby=?, lastmodifiedtime=? WHERE uuid=?;
+        - query: UPDATE eg_du_document SET tenantid=?, name=?, category=?, description=?, documentLink=?, filestoreId=?, fileType=?, fileSize=?, lastmodifiedby=?, lastmodifiedtime=? WHERE uuid=?;
           basePath: DocumentEntity
           jsonMaps:
             - jsonPath: $.DocumentEntity.tenantId
@@ -52,6 +52,8 @@ serviceMaps:
             - jsonPath: $.DocumentEntity.name
 
             - jsonPath: $.DocumentEntity.category
+
+            - jsonPath: $.DocumentEntity.description
 
             - jsonPath: $.DocumentEntity.documentLink
 
