@@ -7,7 +7,7 @@ serviceMaps:
    isTransaction: true
    queryMaps:
 
-       - query: INSERT INTO eg_vendor( id, name, tenantid, additionaldetails, owner_id, description, source, status,agencyType,paymentPreference,createdby, lastmodifiedby, createdtime, lastmodifiedtime) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? );
+       - query: INSERT INTO eg_vendor( id, name, tenantid, additionaldetails, owner_id, description, source, status,agencyType,paymentPreference,createdby, lastmodifiedby, createdtime, lastmodifiedtime,vendor_idgen) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? );
          basePath: vendor
          jsonMaps:
           - jsonPath: $.vendor.id
@@ -39,6 +39,8 @@ serviceMaps:
           - jsonPath: $.vendor.auditDetails.createdTime
 
           - jsonPath: $.vendor.auditDetails.lastModifiedTime
+
+          - jsonPath: $.vendor.vendor_id
           
           
        - query: INSERT INTO eg_vendor_address(id, tenantid, doorno, plotno, landmark, city, district, region, state, country, locality, pincode, additionalDetails, buildingname, street, vendor_id, createdby, lastmodifiedby, createdtime, lastmodifiedtime) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
@@ -372,3 +374,82 @@ serviceMaps:
           - jsonPath: $.driver.auditDetails.createdTime
           - jsonPath: $.driver.auditDetails.lastModifiedTime
           - jsonPath: $.driver.id
+
+          
+  
+ - version: 1.0
+   description: "Persists Vendor Work Order"
+   fromTopic: save-vendor-work-order
+   isTransaction: true
+   queryMaps:
+     - query: >
+         INSERT INTO eg_vendor_work_order (
+          id,
+          tenant_id,
+          name,
+          vendor_id,
+          valid_from,
+          valid_to,
+          mobilenumber,
+          alternatenumber,
+          emailid,
+          servicetype,
+          created_by,
+          last_modified_by,
+          created_time,
+          last_modified_time
+         ) VALUES (
+          ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
+         );
+       basePath: vendorWorkOrder
+       jsonMaps:
+         - jsonPath: $.vendorWorkOrder.id
+         - jsonPath: $.vendorWorkOrder.tenantId
+         - jsonPath: $.vendorWorkOrder.name
+         - jsonPath: $.vendorWorkOrder.vendorId
+         - jsonPath: $.vendorWorkOrder.validFrom
+         - jsonPath: $.vendorWorkOrder.validTo
+         - jsonPath: $.vendorWorkOrder.mobileNumber
+         - jsonPath: $.vendorWorkOrder.alternateNumber
+         - jsonPath: $.vendorWorkOrder.emailId
+         - jsonPath: $.vendorWorkOrder.serviceType
+         - jsonPath: $.vendorWorkOrder.auditDetails.createdBy
+         - jsonPath: $.vendorWorkOrder.auditDetails.lastModifiedBy
+         - jsonPath: $.vendorWorkOrder.auditDetails.createdTime
+         - jsonPath: $.vendorWorkOrder.auditDetails.lastModifiedTime
+  
+ - version: 1.0
+   description: "Updates Vendor Work Order"
+   fromTopic: update-vendor-work-order
+   isTransaction: true
+   queryMaps:
+     - query: >
+         UPDATE eg_vendor_work_order SET
+           tenant_id = ?,
+           name = ?,
+           vendor_id = ?,
+           valid_from = ?,
+           valid_to = ?,
+           mobilenumber = ?,
+           alternatenumber = ?,
+           emailid = ?,
+           servicetype = ?,
+           last_modified_by = ?,
+           last_modified_time = ?
+           WHERE id = ?;
+       basePath: vendorWorkOrder
+       jsonMaps:
+         - jsonPath: $.vendorWorkOrder.tenantId
+         - jsonPath: $.vendorWorkOrder.name
+         - jsonPath: $.vendorWorkOrder.vendorId
+         - jsonPath: $.vendorWorkOrder.validFrom
+         - jsonPath: $.vendorWorkOrder.validTo
+         - jsonPath: $.vendorWorkOrder.mobileNumber
+         - jsonPath: $.vendorWorkOrder.alternateNumber
+         - jsonPath: $.vendorWorkOrder.emailId
+         - jsonPath: $.vendorWorkOrder.serviceType
+         - jsonPath: $.vendorWorkOrder.auditDetails.lastModifiedBy
+         - jsonPath: $.vendorWorkOrder.auditDetails.lastModifiedTime
+         - jsonPath: $.vendorWorkOrder.id                     
+
+         
