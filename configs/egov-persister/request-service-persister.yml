@@ -548,7 +548,6 @@ serviceMaps:
 
         - query: >
             UPDATE eg_fixed_point_time_table SET
-              fixed_point_code = ?,
               trip_no = ?,
               fixed_point_code=?,
               arrival_time_to_fpl = ?,
@@ -566,7 +565,6 @@ serviceMaps:
             WHERE system_assigned_schedule_id = ?
           basePath: fixedPointDetailsList.*
           jsonMaps:
-            - jsonPath: $.fixedPointDetailsList.*.fixed_point_code
             - jsonPath: $.fixedPointDetailsList.*.trip_no
             - jsonPath: $.fixedPointDetailsList.*.fixed_point_code
             - jsonPath: $.fixedPointDetailsList.*.arrival_time_to_fpl
