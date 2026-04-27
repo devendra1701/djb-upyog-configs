@@ -1,5 +1,5 @@
 SearchDefinitions:
-  moduleName: request-service.water_tanker
+  moduleName: request-service.watertanker_fixedpoint
   summary: Water Tanker Fixed Point Inbox API
   version: 1.0.0
 
