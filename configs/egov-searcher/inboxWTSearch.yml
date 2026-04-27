@@ -15,7 +15,7 @@ SearchDefinitions:
                   count_table.total_count
               FROM (
                   SELECT DISTINCT ON (urstbd.booking_no)
-                      urstbd.booking_no,
+                      urstbd.booking_no AS booking_no,
                       pi.createdtime
                   FROM upyog_rs_water_tanker_booking_details urstbd
                   INNER JOIN eg_wf_processinstance_v2 pi
@@ -27,7 +27,7 @@ SearchDefinitions:
                   AND (:tenantId IS NULL OR urstbd.tenant_id = :tenantId)
                   AND (NULLIF(TRIM(:mobileNumber), '') IS NULL OR urstbd.mobile_number = TRIM(:mobileNumber))
                   AND (NULLIF(TRIM(:bookingNo),'') IS NULL OR urstbd.booking_no = TRIM(:bookingNo))
-                  ORDER BY urstbd.booking_no, pi.createdtime ASC
+                  ORDER BY urstbd.booking_no ASC
                   LIMIT :limit OFFSET :offset
               ) data
 
@@ -70,17 +70,6 @@ SearchDefinitions:
           - name: offset
             isMandatory: false
             jsonPath: $.searchCriteria.offset
-
-
-
-          - name: assignee
-            isMandatory: false
-            jsonPath: $.searchCriteria.assignee
-
-          - name: businessservice
-            isMandatory: false
-            jsonPath: $.searchCriteria.businessservice
-
 
       output:
         jsonFormat: {"ResponseInfo": {},"waterTankerBookingDetail": []}
@@ -111,7 +100,7 @@ SearchDefinitions:
                   AND (:tenantId IS NULL OR urstbd.tenant_id = :tenantId)
                   AND (NULLIF(TRIM(:mobileNumber), '') IS NULL OR urstbd.mobile_number = TRIM(:mobileNumber))
                   AND (NULLIF(TRIM(:bookingNo),'') IS NULL OR urstbd.booking_no = TRIM(:bookingNo))
-                  ORDER BY pi.businessid, pi.createdtime DESC
+                  ORDER BY pi.businessid DESC
                   LIMIT :limit OFFSET :offset
               ) data
 
@@ -154,18 +143,9 @@ SearchDefinitions:
             isMandatory: false
             jsonPath: $.searchCriteria.offset
 
-          - name: assignee
-            isMandatory: false
-            jsonPath: $.searchCriteria.assignee
-
-          - name: businessservice
-            isMandatory: false
-            jsonPath: $.searchCriteria.businessservice
-
-
-
-
       output:
         jsonFormat: {"ResponseInfo": {},"waterTankerBookingDetail": []}
         outJsonPath: $.waterTankerBookingDetail
         responseInfoPath: $.ResponseInfo
+
+
