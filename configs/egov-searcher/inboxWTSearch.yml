@@ -23,7 +23,7 @@ SearchDefinitions:
                   LEFT JOIN eg_wf_assignee_v2 assg
                       ON pi.id = assg.processinstanceid
 
-                  WHERE 1=1
+                  WHERE pi.businessservice = 'watertanker'
                   AND (:tenantId IS NULL OR urstbd.tenant_id = :tenantId)
                   AND (NULLIF(TRIM(:mobileNumber), '') IS NULL OR urstbd.mobile_number = TRIM(:mobileNumber))
                   AND (NULLIF(TRIM(:bookingNo),'') IS NULL OR urstbd.booking_no = TRIM(:bookingNo))
@@ -39,7 +39,7 @@ SearchDefinitions:
                   LEFT JOIN eg_wf_assignee_v2 assg
                       ON pi.id = assg.processinstanceid
 
-                  WHERE 1=1
+                  WHERE pi.businessservice = 'watertanker'
                   AND (:tenantId IS NULL OR urstbd.tenant_id = :tenantId)
                   AND (NULLIF(TRIM(:mobileNumber), '') IS NULL OR urstbd.mobile_number = TRIM(:mobileNumber))
                   AND (NULLIF(TRIM(:bookingNo),'') IS NULL OR urstbd.booking_no = TRIM(:bookingNo))
@@ -96,7 +96,7 @@ SearchDefinitions:
                   LEFT JOIN eg_wf_assignee_v2 assg
                       ON pi.id = assg.processinstanceid
 
-                  WHERE 1=1
+                  WHERE pi.businessservice = 'watertanker'
                   AND (:tenantId IS NULL OR urstbd.tenant_id = :tenantId)
                   AND (NULLIF(TRIM(:mobileNumber), '') IS NULL OR urstbd.mobile_number = TRIM(:mobileNumber))
                   AND (NULLIF(TRIM(:bookingNo),'') IS NULL OR urstbd.booking_no = TRIM(:bookingNo))
@@ -112,7 +112,7 @@ SearchDefinitions:
                   LEFT JOIN eg_wf_assignee_v2 assg
                       ON pi.id = assg.processinstanceid
 
-                  WHERE 1=1
+                  WHERE pi.businessservice = 'watertanker'
                   AND (:tenantId IS NULL OR urstbd.tenant_id = :tenantId)
                   AND (NULLIF(TRIM(:mobileNumber), '') IS NULL OR urstbd.mobile_number = TRIM(:mobileNumber))
                   AND (NULLIF(TRIM(:bookingNo),'') IS NULL OR urstbd.booking_no = TRIM(:bookingNo))
