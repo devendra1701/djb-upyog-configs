@@ -397,9 +397,11 @@ serviceMaps:
           created_by,
           last_modified_by,
           created_time,
-          last_modified_time
+          last_modified_time,
+          filling_station_id,
+          wt_file_store_id
          ) VALUES (
-          ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
+          ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
          );
        basePath: vendorWorkOrder
        jsonMaps:
@@ -417,6 +419,9 @@ serviceMaps:
          - jsonPath: $.vendorWorkOrder.auditDetails.lastModifiedBy
          - jsonPath: $.vendorWorkOrder.auditDetails.createdTime
          - jsonPath: $.vendorWorkOrder.auditDetails.lastModifiedTime
+         - jsonPath: $.vendorWorkOrder.fillingStationId
+         - jsonPath: $.vendorWorkOrder.fileStoreId
+
   
  - version: 1.0
    description: "Updates Vendor Work Order"
@@ -435,7 +440,9 @@ serviceMaps:
            emailid = ?,
            servicetype = ?,
            last_modified_by = ?,
-           last_modified_time = ?
+           last_modified_time = ?,
+           filling_station_id = ?,
+           wt_file_store_id = ?
            WHERE id = ?;
        basePath: vendorWorkOrder
        jsonMaps:
@@ -450,6 +457,8 @@ serviceMaps:
          - jsonPath: $.vendorWorkOrder.serviceType
          - jsonPath: $.vendorWorkOrder.auditDetails.lastModifiedBy
          - jsonPath: $.vendorWorkOrder.auditDetails.lastModifiedTime
-         - jsonPath: $.vendorWorkOrder.id                     
+         - jsonPath: $.vendorWorkOrder.fillingStationId
+         - jsonPath: $.vendorWorkOrder.fileStoreId
+         - jsonPath: $.vendorWorkOrder.id
 
          
