@@ -528,7 +528,7 @@ serviceMaps:
       basePath: Property.address
       jsonMaps:
 
-      - jsonPath: $.Property.address.doorNo
+      - jsonPath: $.Property.address.houseNo
 
       - jsonPath: $.Property.address.plotNo
 
